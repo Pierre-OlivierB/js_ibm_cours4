@@ -48,7 +48,7 @@ function updateMonth(e) {
 
   return monthDisplay(date2);
 }
-console.log(updateMonth(11));
+// console.log(updateMonth(11));
 //*today
 function today() {
   var date3 = new Date();
@@ -59,7 +59,40 @@ function today() {
     year: "numeric",
   });
 }
-console.log(today());
+// console.log(today());
+
+//!CamelCase
+//*First part
+var textCamel = "hello World salut le monde";
+
+testWidth = textCamel.length + 1;
+
+function lowerCase(e) {
+  return e.toLocaleLowerCase();
+}
+var textLower = lowerCase(textCamel);
+
+// console.log(firstLetterUp(textLower));
+
+//*Second part
+function camlCaseTool(e) {
+  var tableWords = e.split(" ");
+  // console.log(tableWords[1]);
+  var sentence = tableWords[0];
+  for (let i = 1; i < tableWords.length; i++) {
+    tableWords[i] = firstLetterUp(tableWords[i]);
+    sentence += tableWords[i];
+  }
+  return sentence;
+}
+console.log(camlCaseTool(textLower));
+// camlCaseTool(textLower);
+
+// console.log(tableWords);
+// function camlCaseTool(e){
+// for(let i = 0;i<testWidth; i++){
+
+// }}
 
 // console.log(monthDisplay(date));
 // console.log(monthDisplay(3));
