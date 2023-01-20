@@ -28,16 +28,42 @@ function firstLetterUp(e) {
 var display = firstLetterUp(testPrompt);
 // console.log(display);
 
-//*Date
+//!Date
 var date = new Date();
 var localDate = date.toLocaleDateString();
-var month = date.getMonth();
+var monthely = date.getMonth();
 // console.log(localDate);
 // console.log(date);
 // console.log(month);
 
 var monthTest = date.toLocaleString("fr-FR", { month: "long" });
-console.log(monthTest);
+// console.log(monthTest);
+//*Month Response
+function monthDisplay(e) {
+  return e.toLocaleDateString("fr-FR", { month: "long" });
+}
+function updateMonth(e) {
+  var date2 = new Date();
+  date2.setMonth(e);
+
+  return monthDisplay(date2);
+}
+console.log(updateMonth(11));
+//*today
+function today() {
+  var date3 = new Date();
+  return date3.toLocaleString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+console.log(today());
+
+// console.log(monthDisplay(date));
+// console.log(monthDisplay(3));
+
 //! test
 // console.log(testPrompt.length);
 // console.log(test);
