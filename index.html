@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <div class="container">
+      <h2 id="title">Compteur</h2>
+      <textarea
+        name="userText"
+        id="userText"
+        cols="30"
+        rows="10"
+        maxlength="100"
+        placeholder="Entrez votre texte de 100 caractères max"
+      ></textarea>
+      <div class="content">
+        <p>Déjà taper : <span class="nmbCatch" id="nmbCatch">0</span></p>
+        <p>Il vous reste : <span class="nmbMax" id="nmbMax">100</span></p>
+      </div>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>

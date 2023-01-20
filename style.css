@@ -7,3 +7,24 @@ body {
   /* background: red; */
   height: 100vh;
 }
+.container {
+  width: 400px;
+  height: 400px;
+  border: 2px solid transparent;
+  background: hsl(0, 0%, 90%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px;
+  border-radius: 5px;
+}
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+/* .nmbCatch {
+  content: "Déjà taper:";
+} */
