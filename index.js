@@ -86,6 +86,90 @@ function camlCaseTool(e) {
   return sentence;
 }
 console.log(camlCaseTool(textLower));
+
+//*num in letter
+//TODO: numberToLetters(1)=="un"
+
+const wordArray = [
+  "zero",
+  "un",
+  "deux",
+  "trois",
+  "quatre",
+  "cinq",
+  "six",
+  "sept",
+  "huit",
+  "neuf",
+];
+const wordArrayExceptDix = [
+  "dix",
+  "onze",
+  "douze",
+  "treize",
+  "quatorze",
+  "quinze",
+  "seize",
+];
+const wordArrayExceptDixPlus = [
+  "vingt",
+  "trente",
+  "quarante",
+  "cinquante",
+  "soixante",
+  "soixante-dix",
+  "quatre-vingt",
+  "quatre-vingt-dix",
+];
+
+function numToLet(e) {
+  let numArray = e.toString().split("");
+  let index = e.toString().length;
+  console.log(index);
+  let sentenceInLet = "";
+  //*Dizaine
+  if (e > 9 && e < 17) {
+    console.log(e - 10);
+    sentenceInLet += wordArrayExceptDix[e - 10];
+    return sentenceInLet;
+  }
+  if (numArray[numArray.length - 1] == 1) {
+    sentenceInLet += wordArrayExceptDix[0] + "-" + wordArray[numArray[1]];
+    return sentenceInLet;
+  }
+  //*vingt et plus
+  if (numArray[0] >= 2 && numArray[numArray.length - 1] < 7) {
+    if (numArray[1] == 0) {
+      sentenceInLet += wordArrayExceptDixPlus[numArray[0] - 2];
+      return sentenceInLet;
+    }
+    //*et un
+    if (numArray[numArray.length - 1] == 1) {
+      sentenceInLet +=
+        wordArrayExceptDixPlus[numArray[0] - 2] +
+        " et " +
+        wordArray[numArray[1]];
+      return sentenceInLet;
+    }
+    //*no filter
+    sentenceInLet +=
+      wordArrayExceptDixPlus[numArray[0] - 2] + "-" + wordArray[numArray[1]];
+    return sentenceInLet;
+  }
+  //*70+
+  if (numArray[numArray.length - 1] == 7) {
+  }
+
+  //*No exception
+  for (let i = 0; i < index; i++) {
+    sentenceInLet += wordArray[numArray[i]] + " ";
+  }
+
+  return sentenceInLet;
+}
+console.log(numToLet(51));
+
+//! test
 // camlCaseTool(textLower);
 
 // console.log(tableWords);
@@ -96,8 +180,6 @@ console.log(camlCaseTool(textLower));
 
 // console.log(monthDisplay(date));
 // console.log(monthDisplay(3));
-
-//! test
 // console.log(testPrompt.length);
 // console.log(test);
 //
