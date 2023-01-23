@@ -110,6 +110,9 @@ const wordArrayExceptDix = [
   "quatorze",
   "quinze",
   "seize",
+  "dix-sept",
+  "dix-huight",
+  "dix-neuf",
 ];
 const wordArrayExceptDixPlus = [
   "vingt",
@@ -117,9 +120,9 @@ const wordArrayExceptDixPlus = [
   "quarante",
   "cinquante",
   "soixante",
-  "soixante-dix",
+  "soixante",
   "quatre-vingt",
-  "quatre-vingt-dix",
+  "quatre-vingt",
 ];
 
 function numToLet(e) {
@@ -127,37 +130,76 @@ function numToLet(e) {
   let index = e.toString().length;
   console.log(index);
   let sentenceInLet = "";
+  //*mille
+  if (numArray.length == 4) {
+    sentenceInLet += wordArray[numArray[numArray.length - 4]] + "-mille ";
+    if (numArray[numArray.length - 4] == 1) {
+      sentenceInLet = "mille ";
+    }
+  }
+  //*centaine
+  if (numArray.length == 3 || numArray.length == 4) {
+    sentenceInLet += wordArray[numArray[numArray.length - 3]] + "-cent ";
+    if (numArray[numArray.length - 3] == 1) {
+      sentenceInLet = "cent ";
+    }
+  }
   //*Dizaine
   if (e > 9 && e < 17) {
     console.log(e - 10);
     sentenceInLet += wordArrayExceptDix[e - 10];
     return sentenceInLet;
   }
-  if (numArray[numArray.length - 1] == 1) {
-    sentenceInLet += wordArrayExceptDix[0] + "-" + wordArray[numArray[1]];
+  if (numArray[numArray.length - 2] == 1) {
+    sentenceInLet +=
+      wordArrayExceptDix[0] + "-" + wordArray[numArray[numArray.length - 1]];
     return sentenceInLet;
   }
-  //*vingt et plus
-  if (numArray[0] >= 2 && numArray[numArray.length - 1] < 7) {
-    if (numArray[1] == 0) {
-      sentenceInLet += wordArrayExceptDixPlus[numArray[0] - 2];
+  //*vingt à soixante et quatre-vingt
+  if (
+    (numArray[numArray.length - 2] >= 2 && numArray[numArray.length - 2] < 7) ||
+    numArray[numArray.length - 2] == 8
+  ) {
+    if (numArray[numArray.length - 1] == 0) {
+      sentenceInLet +=
+        wordArrayExceptDixPlus[numArray[numArray.length - 2] - 2];
       return sentenceInLet;
     }
     //*et un
     if (numArray[numArray.length - 1] == 1) {
       sentenceInLet +=
-        wordArrayExceptDixPlus[numArray[0] - 2] +
+        wordArrayExceptDixPlus[numArray[numArray.length - 2] - 2] +
         " et " +
         wordArray[numArray[1]];
       return sentenceInLet;
     }
     //*no filter
     sentenceInLet +=
-      wordArrayExceptDixPlus[numArray[0] - 2] + "-" + wordArray[numArray[1]];
+      wordArrayExceptDixPlus[numArray[numArray.length - 2] - 2] +
+      "-" +
+      wordArray[numArray[numArray.length - 1]];
     return sentenceInLet;
   }
-  //*70+
-  if (numArray[numArray.length - 1] == 7) {
+  //*70+ or 90+
+  if (
+    numArray[numArray.length - 2] == 7 ||
+    numArray[numArray.length - 2] == 9
+  ) {
+    if (
+      numArray[numArray.length - 1] == 1 &&
+      numArray[numArray.length - 2] == 7
+    ) {
+      sentenceInLet +=
+        wordArrayExceptDixPlus[numArray[numArray.length - 2] - 2] +
+        " et " +
+        wordArrayExceptDix[numArray[numArray.length - 1]];
+      return sentenceInLet;
+    }
+    sentenceInLet +=
+      wordArrayExceptDixPlus[numArray[numArray.length - 2] - 2] +
+      "-" +
+      wordArrayExceptDix[numArray[numArray.length - 1]];
+    return sentenceInLet;
   }
 
   //*No exception
@@ -167,7 +209,7 @@ function numToLet(e) {
 
   return sentenceInLet;
 }
-console.log(numToLet(51));
+console.log(numToLet(9579));
 
 //! test
 // camlCaseTool(textLower);
